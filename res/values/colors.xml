@@ -30,4 +30,7 @@
 
     <color name="face_enroll_vendor_color">@*android:color/system_error_light</color>
     <color name="face_enroll_progress_background">@*android:color/system_error_light</color>
+
+    <color name="app_icon_background_color">@*android:color/accent_device_default_light</color>
+
 </resources>
