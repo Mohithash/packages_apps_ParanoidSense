@@ -55,6 +55,9 @@ class SenseService : Service() {
     private var mUserUnlocked = false
     private var mIsAuthenticated = false
 
+    private val mLockoutLock = Any()
+    private val mAuthErrorLock = Any()
+
     private val mReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val action = intent.action
@@ -62,13 +65,13 @@ class SenseService : Service() {
                 Log.d(TAG, "OnReceive intent = $intent")
             }
             when (action) {
-                ALARM_TIMEOUT_FREEZED -> synchronized(mLockoutType) {
+                ALARM_TIMEOUT_FREEZED -> synchronized(mLockoutLock) {
                     mLockoutType = LOCKOUT_TYPE_IDLE
                 }
                 ALARM_FAIL_TIMEOUT_LOCKOUT -> {
                     cancelLockoutTimer()
-                    synchronized(mLockoutType) { mLockoutType = LOCKOUT_TYPE_DISABLED }
-                    synchronized(mAuthenticationErrorCount) { mAuthenticationErrorCount = 0 }
+                    synchronized(mLockoutLock) { mLockoutType = LOCKOUT_TYPE_DISABLED }
+                    synchronized(mAuthErrorLock) { mAuthenticationErrorCount = 0 }
                 }
                 Intent.ACTION_SCREEN_OFF, Intent.ACTION_USER_PRESENT -> {
                     mUserUnlocked = action == Intent.ACTION_USER_PRESENT
@@ -367,7 +370,7 @@ class SenseService : Service() {
         if (mOnLockoutTimer || mLockoutType != LOCKOUT_TYPE_DISABLED) {
             return
         }
-        synchronized(mAuthenticationErrorCount) {
+        synchronized(mAuthErrorLock) {
             mAuthenticationErrorCount += 1
             mAuthenticationErrorThrottleCount += 1
             if (Util.IS_DEBUG_LOGGING) Log.d(
@@ -377,16 +380,16 @@ class SenseService : Service() {
             if (Util.IS_DEBUG_LOGGING) Log.d(TAG, "userUnlocked =$mUserUnlocked")
             if (mUserUnlocked && mAuthenticationErrorCount == MAX_FAILED_ATTEMPTS_LOCKOUT_TIMED) {
                 Log.d(TAG, "Too many attempts, lockout permanent because device is unlocked")
-                mLockoutType = LOCKOUT_TYPE_PERMANENT
+                synchronized(mLockoutLock) { mLockoutType = LOCKOUT_TYPE_PERMANENT }
                 cancelLockoutTimer()
             } else if (mAuthenticationErrorThrottleCount == MAX_FAILED_ATTEMPTS_LOCKOUT_PERMANENT) {
-                synchronized(mLockoutType) {
+                synchronized(mLockoutLock) {
                     Log.d(TAG, "Too many attempts, lockout permanent")
                     mLockoutType = LOCKOUT_TYPE_PERMANENT
-                    cancelLockoutTimer()
                 }
+                cancelLockoutTimer()
             } else if (mAuthenticationErrorCount == MAX_FAILED_ATTEMPTS_LOCKOUT_TIMED) {
-                synchronized(mLockoutType) {
+                synchronized(mLockoutLock) {
                     Log.d(TAG, "Too many attempts, lockout for 30s")
                     mLockoutType = LOCKOUT_TYPE_TIMED
                 }
@@ -409,9 +412,11 @@ class SenseService : Service() {
     }
 
     private fun resetLockoutCount() {
-        synchronized(mAuthenticationErrorCount) {
+        synchronized(mAuthErrorLock) {
             mAuthenticationErrorCount = 0
             mAuthenticationErrorThrottleCount = 0
+        }
+        synchronized(mLockoutLock) {
             mLockoutType = LOCKOUT_TYPE_DISABLED
         }
         cancelLockoutTimer()
