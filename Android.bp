@@ -30,9 +30,9 @@ android_app {
         "libmegface_faceunlock",
         "libMegviiUnlock",
         "libMegviiUnlock-jni-1.2",
-        "default_permissions_co.aospa.sense.xml",
-        "hiddenapi-whitelist-co.aospa.sense.xml",
-        "privapp_whitelist_co.aospa.sense.xml",
+        "default_permissions_com.voltageos.faceunlock.xml",
+        "hiddenapi-whitelist-com.voltageos.faceunlock.xml",
+        "privapp_whitelist_com.voltageos.faceunlock.xml",
         "FaceUnlockOverlay",
     ],
 
@@ -114,22 +114,22 @@ java_import {
 }
 
 prebuilt_etc {
-    name: "default_permissions_co.aospa.sense.xml",
-    src: "permissions/default_permissions_co.aospa.sense.xml",
+    name: "default_permissions_com.voltageos.faceunlock.xml",
+    src: "permissions/default_permissions_com.voltageos.faceunlock.xml",
     sub_dir: "default-permissions",
     system_ext_specific: true,
 }
 
 prebuilt_etc {
-    name: "hiddenapi-whitelist-co.aospa.sense.xml",
-    src: "permissions/hiddenapi-whitelist-co.aospa.sense.xml",
+    name: "hiddenapi-whitelist-com.voltageos.faceunlock.xml",
+    src: "permissions/hiddenapi-whitelist-com.voltageos.faceunlock.xml",
     sub_dir: "sysconfig",
     system_ext_specific: true,
 }
 
 prebuilt_etc {
-    name: "privapp_whitelist_co.aospa.sense.xml",
-    src: "permissions/privapp_whitelist_co.aospa.sense.xml",
+    name: "privapp_whitelist_com.voltageos.faceunlock.xml",
+    src: "permissions/privapp_whitelist_com.voltageos.faceunlock.xml",
     sub_dir: "permissions",
     system_ext_specific: true,
 }

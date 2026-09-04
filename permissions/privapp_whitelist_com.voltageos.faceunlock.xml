@@ -13,8 +13,12 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<exceptions>
-    <exception package="co.aospa.sense">
-        <permission name="android.permission.CAMERA" fixed="false"/>
-    </exception>
-</exceptions>
+<permissions>
+
+    <privapp-permissions package="com.voltageos.faceunlock">
+        <permission name="android.permission.SYSTEM_CAMERA"/>
+        <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+        <permission name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    </privapp-permissions>
+
+</permissions>
