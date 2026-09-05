@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:sharedUserId="android.uid.system"
-    package="com.voltageos.faceunlock">
+    package="com.bestrom.faceunlock">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CAMERA_OPEN_CLOSE_LISTENER"/>
