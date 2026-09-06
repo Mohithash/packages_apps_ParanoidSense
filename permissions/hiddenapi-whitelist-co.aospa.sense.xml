@@ -14,5 +14,5 @@
      limitations under the License.
 -->
 <config>
-   <hidden-api-whitelisted-app package="co.aospa.sense" />
+   <hidden-api-whitelisted-app package="com.bestrom.faceunlock" />
 </config>

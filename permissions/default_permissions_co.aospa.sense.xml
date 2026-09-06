@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <exceptions>
-    <exception package="co.aospa.sense">
+    <exception package="com.bestrom.faceunlock">
         <permission name="android.permission.CAMERA" fixed="false"/>
     </exception>
 </exceptions>
