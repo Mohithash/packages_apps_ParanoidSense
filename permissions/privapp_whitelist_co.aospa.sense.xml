@@ -15,7 +15,7 @@
 -->
 <permissions>
 
-    <privapp-permissions package="com.bestrom.faceunlock">
+    <privapp-permissions package="co.aospa.sense">
         <permission name="android.permission.SYSTEM_CAMERA"/>
         <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
         <permission name="android.permission.SCHEDULE_EXACT_ALARM"/>
