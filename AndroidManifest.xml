@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:sharedUserId="android.uid.system"
-    package="com.voltageos.faceunlock">
+    package="com.bestrom.faceunlock">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CAMERA_OPEN_CLOSE_LISTENER"/>
@@ -45,7 +45,7 @@
             android:label="@string/app_name"
             android:permission="android.permission.MANAGE_BIOMETRIC">
             <intent-filter>
-                <action android:name="com.voltageos.faceunlock.BIND" />
+                <action android:name="com.bestrom.faceunlock.BIND" />
             </intent-filter>
         </service>
     </application>

@@ -30,9 +30,9 @@ android_app {
         "libmegface_faceunlock",
         "libMegviiUnlock",
         "libMegviiUnlock-jni-1.2",
-        "default_permissions_com.voltageos.faceunlock.xml",
-        "hiddenapi-whitelist-com.voltageos.faceunlock.xml",
-        "privapp_whitelist_com.voltageos.faceunlock.xml",
+        "default_permissions_com.bestrom.faceunlock.xml",
+        "hiddenapi-whitelist-com.bestrom.faceunlock.xml",
+        "privapp_whitelist_com.bestrom.faceunlock.xml",
         "FaceUnlockOverlay",
     ],
 
@@ -43,6 +43,7 @@ android_app {
         enabled: false,
     },
     system_ext_specific: true,
+    jarjar_rules: "jarjar-rules.txt",
 }
 
 cc_prebuilt_library_shared {
@@ -114,22 +115,22 @@ java_import {
 }
 
 prebuilt_etc {
-    name: "default_permissions_com.voltageos.faceunlock.xml",
-    src: "permissions/default_permissions_com.voltageos.faceunlock.xml",
+    name: "default_permissions_com.bestrom.faceunlock.xml",
+    src: "permissions/default_permissions_com.bestrom.faceunlock.xml",
     sub_dir: "default-permissions",
     system_ext_specific: true,
 }
 
 prebuilt_etc {
-    name: "hiddenapi-whitelist-com.voltageos.faceunlock.xml",
-    src: "permissions/hiddenapi-whitelist-com.voltageos.faceunlock.xml",
+    name: "hiddenapi-whitelist-com.bestrom.faceunlock.xml",
+    src: "permissions/hiddenapi-whitelist-com.bestrom.faceunlock.xml",
     sub_dir: "sysconfig",
     system_ext_specific: true,
 }
 
 prebuilt_etc {
-    name: "privapp_whitelist_com.voltageos.faceunlock.xml",
-    src: "permissions/privapp_whitelist_com.voltageos.faceunlock.xml",
+    name: "privapp_whitelist_com.bestrom.faceunlock.xml",
+    src: "permissions/privapp_whitelist_com.bestrom.faceunlock.xml",
     sub_dir: "permissions",
     system_ext_specific: true,
 }
