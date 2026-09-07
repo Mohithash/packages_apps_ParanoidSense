@@ -1,3 +1,0 @@
-# lib/vendorImplPrebuilt.jar (no source) references the app's classes under the
-# VoltageOS package it was built against; relocate them to the BestROM package.
-rule com.voltageos.faceunlock.** com.bestrom.faceunlock.@1

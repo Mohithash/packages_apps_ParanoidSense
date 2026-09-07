@@ -43,7 +43,6 @@ android_app {
         enabled: false,
     },
     system_ext_specific: true,
-    jarjar_rules: "jarjar-rules.txt",
 }
 
 cc_prebuilt_library_shared {
